@@ -1,0 +1,5 @@
+name: zenlytic_demo
+profile: demo
+
+dashboard-paths:
+- dashboards
