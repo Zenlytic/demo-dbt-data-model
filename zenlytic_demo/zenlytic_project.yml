@@ -1,5 +1,6 @@
 name: zenlytic_demo
 profile: demo
+mode: dbt
 
 dashboard-paths:
 - dashboards
