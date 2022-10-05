@@ -23,16 +23,26 @@ models:
   
   - name: order_id
     description: The order_id for this table
+    meta:
+      tags: ['order']
+      drill_fields: [order_date, subscription_vs_otp, marketing_channel, campaign, promotion, total_gross_revenue]
     
   - name: product_id
     description: The product_id for this table
+    meta:
+      tags: ['product']
 
   - name: customer_id
     description: The customer_id for this table
+    meta:
+      tags: ['customer']
+      drill_fields: [customers.email, customers.state, customers.city, customers.zipcode]
 
   - name: marketing_channel
     description: The marketing_channel for this table
     is_dimension: true
+    meta:
+      drill_down: marketing_source
 
   - name: new_vs_repeat
     description: The new_vs_repeat for this table
@@ -44,6 +54,9 @@ models:
   - name: marketing_source
     description: The marketing_source for this table
     is_dimension: true
+    meta:
+      drill_up: marketing_channel
+      drill_down: campaign
 
   - name: subscription_vs_otp
     description: Whether the purchase is a subscription or a One Time Purchase (OTP)
@@ -66,6 +79,8 @@ models:
   - name: campaign
     description: The campaign for this table
     is_dimension: true
+    meta:
+      drill_up: marketing_source
 
   - name: promotion
     description: The promotion for this table
