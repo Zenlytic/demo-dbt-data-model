@@ -25,7 +25,7 @@ models:
     description: The order_id for this table
     meta:
       tags: ['order']
-      drill_fields: [order_date, subscription_vs_otp, marketing_channel, campaign, promotion, total_gross_revenue]
+      drill_fields: [order_at_date, subscription_vs_otp, marketing_channel, campaign, promotion, total_gross_revenue]
     
   - name: product_id
     description: The product_id for this table
