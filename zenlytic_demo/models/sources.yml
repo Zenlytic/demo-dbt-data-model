@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: demo_raw
+    database: demo
+
+    tables:
+      - name: order_lines
+      - name: products
+      - name: customers
+      - name: site_events
+      

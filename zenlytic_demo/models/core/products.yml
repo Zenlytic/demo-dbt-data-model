@@ -1,0 +1,31 @@
+version: 2
+
+models:
+- name: products
+  description: The table with all product information 
+    
+  meta:
+    row_label: Product
+    identifiers:
+    - name: product_id
+      type: primary
+      sql: ${product_id}
+  columns:
+  - name: product_id
+    description: The product_id for this table (primary key)
+    primary_key: yes
+    tests:
+      - unique
+      - not_null
+  
+  - name: price
+    description: The price for this table
+    is_dimension: true
+
+  - name: product_type
+    description: The product type (e.g. eyeliner, blush, etc)
+    is_dimension: true
+
+  - name: product_title
+    description: The product title (SKU level)
+    is_dimension: true
