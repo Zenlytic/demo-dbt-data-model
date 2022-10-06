@@ -142,6 +142,10 @@ metrics:
   type: count
   timestamp: event_timestamp
   time_grains: [day, week, month, quarter, year]
+  meta:
+    value_format_name: decimal_0
+    extra:
+      zenlytic.show: yes
 
 - name: number_of_sessions
   label: Number of sessions
@@ -152,6 +156,10 @@ metrics:
   sql: session_id
   timestamp: event_timestamp
   time_grains: [day, week, month, quarter, year]
+  meta:
+    value_format_name: decimal_0
+    extra:
+      zenlytic.show: yes
 
 - name: number_of_users
   label: Number of users
@@ -162,3 +170,8 @@ metrics:
   sql: user_id
   timestamp: event_timestamp
   time_grains: [day, week, month, quarter, year]
+  meta:
+    value_format_name: decimal_0
+    extra:
+      zenlytic.show: yes
+      
