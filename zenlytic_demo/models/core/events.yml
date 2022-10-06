@@ -149,7 +149,7 @@ metrics:
 
 - name: number_of_sessions
   label: Number of sessions
-  description: The count of the number of events in the table
+  description: The count of the number of sessions in the table
   model: ref('events')
   
   type: count_distinct
@@ -160,6 +160,24 @@ metrics:
     value_format_name: decimal_0
     extra:
       zenlytic.show: yes
+
+# - name: number_of_sessions_organic
+#   label: Number of sessions (Organic)
+#   description: The count of the number of organic sessions
+#   model: ref('events')
+  
+#   type: count_distinct
+#   sql: session_id
+#   timestamp: event_timestamp
+#   time_grains: [day, week, month, quarter, year]
+#   filters:
+#   - field: utm_medium
+#     operator: '='
+#     value: "'organic'"
+#   meta:
+#     value_format_name: decimal_0
+#     extra:
+#       zenlytic.show: yes
 
 - name: number_of_users
   label: Number of users
