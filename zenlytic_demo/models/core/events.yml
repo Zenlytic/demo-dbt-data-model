@@ -167,11 +167,10 @@ metrics:
   model: ref('events')
   
   type: count_distinct
-  sql: user_id
+  sql: anonymous_id
   timestamp: event_timestamp
   time_grains: [day, week, month, quarter, year]
   meta:
     value_format_name: decimal_0
     extra:
       zenlytic.show: yes
-      
