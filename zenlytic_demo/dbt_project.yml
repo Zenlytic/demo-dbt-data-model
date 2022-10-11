@@ -36,3 +36,7 @@ models:
     # Config indicated by + and applies to all files under models/example/
     core:
       +materialized: table
+
+on-run-end:
+  - "{{ grant_select_on_schemas(schemas, 'DEMO_ROLE') }}"
+  - "{{ grant_select_on_schemas(schemas, 'DEMO_WRITE_ROLE') }}"
