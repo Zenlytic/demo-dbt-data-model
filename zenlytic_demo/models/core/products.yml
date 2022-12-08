@@ -9,7 +9,7 @@ models:
     identifiers:
     - name: product_id
       type: primary
-      sql: ${product_id}
+      expression: ${product_id}
   columns:
   - name: product_id
     description: The product_id for this table (primary key)

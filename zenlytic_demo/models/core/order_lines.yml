@@ -8,10 +8,10 @@ models:
     identifiers:
     - name: product_id
       type: foreign
-      sql: ${product_id}
+      expression: ${product_id}
     - name: customer_id
       type: foreign
-      sql: ${customer_id}
+      expression: ${customer_id}
 
   columns:
   - name: order_line_id
@@ -95,8 +95,8 @@ metrics:
   description: "Total gross revenue = revenue from product sales + shipping revenues"
   model: ref('order_lines')
 
-  type: sum
-  sql: revenue
+  calculation_method: sum
+  expression: revenue
   timestamp: order_at
   time_grains: [day, week, month, quarter, year]
   meta:
@@ -110,8 +110,8 @@ metrics:
   description: "All discounts applied to either the order or the product in the order"
   model: ref('order_lines')
 
-  type: sum
-  sql: discount
+  calculation_method: sum
+  expression: discount
   timestamp: order_at
   time_grains: [day, week, month, quarter, year]
   meta:
@@ -123,8 +123,8 @@ metrics:
   label: Total net revenue
   description: "Total net revenue = gross revenue - discounts"
   
-  type: expression
-  sql: "{{metric('total_gross_revenue')}} - {{metric('total_discounts')}}"
+  calculation_method: derived
+  expression: "{{metric('total_gross_revenue')}} - {{metric('total_discounts')}}"
   
   timestamp: order_at
   time_grains: [day, week, month, quarter, year]
@@ -137,8 +137,8 @@ metrics:
   label: Subscription revenue
   description: "Subscription revenue = gross revenue (product revenues + shipping, for subscriptions only)"
   model: ref('order_lines')
-  type: sum
-  sql: revenue
+  calculation_method: sum
+  expression: revenue
   timestamp: order_at
   time_grains: [day, week, month, quarter, year]
 
@@ -157,8 +157,8 @@ metrics:
   description: "The unique number of customers who placed orders"
   model: ref('order_lines')
   
-  type: count_distinct
-  sql: customer_id
+  calculation_method: count_distinct
+  expression: customer_id
   timestamp: order_at
   time_grains: [day, week, month, quarter, year]
   meta:
@@ -171,8 +171,8 @@ metrics:
   description: "The unique number of orders placed"
   model: ref('order_lines')
   
-  type: count_distinct
-  sql: order_id
+  calculation_method: count_distinct
+  expression: order_id
   timestamp: order_at
   time_grains: [day, week, month, quarter, year]
   meta:
@@ -184,8 +184,8 @@ metrics:
   label: Gross AOV
   description: "Gross AOV = gross revenues / number of orders"
 
-  type: expression
-  sql: "{{metric('total_gross_revenue')}} / nullif({{metric('number_of_orders')}}, 0)"
+  calculation_method: derived
+  expression: "{{metric('total_gross_revenue')}} / nullif({{metric('number_of_orders')}}, 0)"
 
   timestamp: order_at
   time_grains: [day, week, month, quarter, year]
@@ -199,8 +199,8 @@ metrics:
   label: Number of units sold
   description: "The unique number of units purchased (e.g. customer orders: 2 lip gloss and 1 blush = 3 units sold)"
   model: ref('order_lines')
-  type: sum
-  sql: quantity
+  calculation_method: sum
+  expression: quantity
   
   timestamp: order_at
   time_grains: [day, week, month, quarter, year]

@@ -139,7 +139,8 @@ metrics:
   description: The count of the number of events in the table
   model: ref('events')
 
-  type: count
+  calculation_method: count
+  expression: event_id
   timestamp: event_timestamp
   time_grains: [day, week, month, quarter, year]
   meta:
@@ -152,8 +153,8 @@ metrics:
   description: The count of the number of sessions in the table
   model: ref('events')
   
-  type: count_distinct
-  sql: session_id
+  calculation_method: count_distinct
+  expression: session_id
   timestamp: event_timestamp
   time_grains: [day, week, month, quarter, year]
   meta:
@@ -166,8 +167,8 @@ metrics:
   description: The count of the number of organic sessions
   model: ref('events')
   
-  type: count_distinct
-  sql: session_id
+  calculation_method: count_distinct
+  expression: session_id
   timestamp: event_timestamp
   time_grains: [day, week, month, quarter, year]
   filters:
@@ -184,8 +185,8 @@ metrics:
   description: The unique number of website users
   model: ref('events')
   
-  type: count_distinct
-  sql: anonymous_id
+  calculation_method: count_distinct
+  expression: anonymous_id
   timestamp: event_timestamp
   time_grains: [day, week, month, quarter, year]
   meta:

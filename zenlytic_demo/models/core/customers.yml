@@ -8,7 +8,7 @@ models:
     identifiers:
     - name: customer_id
       type: primary
-      sql: ${customer_id}
+      expression: ${customer_id}
 
   columns:
   - name: customer_id
@@ -71,7 +71,8 @@ models:
 metrics:
 - name: number_of_customers
   label: Count
-  type: count
+  calculation_method: count
+  expression: customer_id
   model: ref('customers')
   description: The count of the rows in the table
   timestamp: first_order_at
