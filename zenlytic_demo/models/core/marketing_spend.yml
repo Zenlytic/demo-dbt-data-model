@@ -1,0 +1,50 @@
+version: 2
+
+models:
+- name: marketing_spend
+  description: The table with all product information 
+    
+  meta:
+    default_date: 
+  columns:
+  - name: spend_id
+    description: The send_id for this table (primary key)
+    primary_key: yes
+    tests:
+      - unique
+      - not_null
+  
+  - name: spend_at
+    description: The date of the ad spend
+    meta:
+      datatype: timestamp
+
+  - name: channel
+    description: The channel of the ad spend
+    is_dimension: true
+
+  - name: source
+    description: The source of the ad spend
+    is_dimension: true
+
+  - name: campaign
+    description: The campaign of the ad spend
+    is_dimension: true
+
+  - name: ad_spend
+    description: The amount spent 
+
+metrics:
+- name: total_marketing_spend
+  label: Total Marketing Spend
+  description: "Total USD spent on ads across all platforms"
+  model: ref('marketing_spend')
+
+  calculation_method: sum
+  expression: ad_spend
+  timestamp: spend
+  time_grains: [day, week, month, quarter, year]
+  meta:
+    value_format_name: usd
+    extra:
+      zenlytic.show: yes
