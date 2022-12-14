@@ -7,7 +7,7 @@ models:
     default_date: spend_at
   columns:
   - name: spend_id
-    description: The send_id for this table (primary key)
+    description: The spend_id for this table (primary key)
     primary_key: yes
     tests:
       - unique
@@ -41,7 +41,7 @@ metrics:
 
   calculation_method: sum
   expression: ad_spend
-  timestamp: spend
+  timestamp: spend_at
   time_grains: [day, week, month, quarter, year]
   meta:
     value_format_name: usd
