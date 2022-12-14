@@ -3,9 +3,8 @@ version: 2
 models:
 - name: marketing_spend
   description: The table with all product information 
-    
   meta:
-    default_date: spent_at
+    default_date: spend_at
   columns:
   - name: spend_id
     description: The send_id for this table (primary key)
