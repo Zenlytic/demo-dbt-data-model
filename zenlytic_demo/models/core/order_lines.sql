@@ -18,4 +18,106 @@ result as (
     where order_line_number = 1
 )
 
-select * from result
+select 
+  order_line_id,
+	order_id,
+  customer_id,
+  product_id,
+  order_at,
+  subscription_vs_otp,
+  marketing_channel,
+  marketing_source,
+  campaign,
+  promotion,
+  price,
+  quantity,
+  discount,
+  revenue,
+  order_number, 
+  new_vs_repeat
+from result
+
+union all 
+
+select 
+  order_line_id + 1134352342 as order_line_id,
+	order_id  + 1134352342 as order_id,
+  customer_id,
+  product_id,
+  dateadd('day', -146, order_at) as order_at,
+  subscription_vs_otp,
+  marketing_channel,
+  marketing_source,
+  campaign,
+  promotion,
+  price,
+  quantity,
+  discount,
+  revenue,
+  order_number, 
+  new_vs_repeat
+from result
+
+union all 
+
+select 
+  order_line_id + 1134352342333 as order_line_id,
+	order_id  + 1134352342333 as order_id,
+  customer_id,
+  product_id,
+  dateadd('day', -146 * 2, order_at) as order_at,
+  subscription_vs_otp,
+  marketing_channel,
+  marketing_source,
+  campaign,
+  promotion,
+  price,
+  quantity,
+  discount,
+  revenue,
+  order_number, 
+  new_vs_repeat
+from result
+
+
+union all 
+
+select 
+  order_line_id + 52342333 as order_line_id,
+	order_id  + 52342333 as order_id,
+  customer_id,
+  product_id,
+  dateadd('day', -146 * 3, order_at) as order_at,
+  subscription_vs_otp,
+  marketing_channel,
+  marketing_source,
+  campaign,
+  promotion,
+  price,
+  quantity,
+  discount,
+  revenue,
+  order_number, 
+  new_vs_repeat
+from result
+
+union all 
+
+select 
+  order_line_id + 5234233355555 as order_line_id,
+	order_id  + 5234233355555 as order_id,
+  customer_id,
+  product_id,
+  dateadd('day', -146 * 4, order_at) as order_at,
+  subscription_vs_otp,
+  marketing_channel,
+  marketing_source,
+  campaign,
+  promotion,
+  price,
+  quantity,
+  discount,
+  revenue,
+  order_number, 
+  new_vs_repeat
+from result
