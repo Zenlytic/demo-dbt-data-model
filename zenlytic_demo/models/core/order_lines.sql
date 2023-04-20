@@ -2,6 +2,10 @@ with source as (
     select * from {{ source('demo_raw', 'order_lines') }}
 ),
 
+click_info as (
+    select * from {{ source('demo_raw', 'click_info') }}
+),
+
 base as (
   select 
     row_number() over (partition by order_line_id order by order_at) as order_line_number,
@@ -9,17 +13,24 @@ base as (
   from source
 ),
 
-result as (
+sub_result as (
     select 
         *,
-        case 
-          when product_id in ('P6', 'P8') then 0.3 * revenue
-          else 0.25 * revenue
-        end                                                                 as cogs,
+        revenue * 0.21 + discount * 30                                      as cogs,
         dense_rank() over (partition by customer_id order by order_at)      as order_number,
         case when order_number = 1 then 'New' else 'Repeat' end             as new_vs_repeat
     from base
     where order_line_number = 1
+),
+
+result as (
+  select 
+    sub_result.*,
+    click_info.first_click,
+    click_info.last_click
+  from sub_result
+    left join click_info
+      on click_info.order_line_id = sub_result.order_line_id
 )
 
 select 
@@ -31,6 +42,9 @@ select
   subscription_vs_otp,
   marketing_channel,
   marketing_source,
+  cogs,
+  first_click,
+  last_click,
   campaign,
   promotion,
   price,
@@ -52,6 +66,9 @@ select
   subscription_vs_otp,
   marketing_channel,
   marketing_source,
+  cogs,
+  first_click,
+  last_click,
   campaign,
   promotion,
   price,
@@ -73,6 +90,9 @@ select
   subscription_vs_otp,
   marketing_channel,
   marketing_source,
+  cogs,
+  first_click,
+  last_click,
   campaign,
   promotion,
   price,
@@ -95,6 +115,9 @@ select
   subscription_vs_otp,
   marketing_channel,
   marketing_source,
+  cogs,
+  first_click,
+  last_click,
   campaign,
   promotion,
   price,
@@ -116,6 +139,9 @@ select
   subscription_vs_otp,
   marketing_channel,
   marketing_source,
+  cogs,
+  first_click,
+  last_click,
   campaign,
   promotion,
   price,
