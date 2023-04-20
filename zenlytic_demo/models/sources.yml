@@ -10,4 +10,8 @@ sources:
       - name: customers
       - name: site_events
       - name: marketing_spend
+      - name: returns
+      - name: order_info
+      - name: click_info
+      
       
