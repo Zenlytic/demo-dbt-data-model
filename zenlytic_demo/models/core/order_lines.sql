@@ -3,7 +3,12 @@ with source as (
 ),
 
 click_info as (
-    select * from {{ source('demo_raw', 'click_info') }}
+    select 
+      order_line_id, 
+      max(first_click) as first_click,
+      max(last_click) as last_click
+    from {{ source('demo_raw', 'click_info') }}
+    group by 1
 ),
 
 base as (
