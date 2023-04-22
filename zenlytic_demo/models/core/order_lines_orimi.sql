@@ -61,7 +61,19 @@ result as (
     click_info.last_click,
     return_lines.return_at is not null as is_returned,
     return_lines.return_at,
-    return_lines.returned_for_fit
+    return_lines.returned_for_fit,
+    case 
+      when return_lines.return_at is not null then 
+        case 
+          when return_lines.returned_for_fit = true then 'Product description was inaccurate'
+          when sub_result.marketing_channel = 'Paid Search' then 'Did not like the look'
+          when sub_result.marketing_channel = 'Organic' then 'Not what I ordered'
+          when sub_result.marketing_channel = 'Facebook' then 'Took to long to get to me'
+          when sub_result.marketing_channel = 'TikTok' then 'Arrived damaged'
+          else 'Other - Return'
+        end
+      else null
+    end                               as return_reason
   from sub_result
     left join order_info 
       on order_info.order_id = sub_result.order_id
