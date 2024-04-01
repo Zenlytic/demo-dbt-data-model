@@ -20,7 +20,15 @@ first_orders as (
 
 result as (
     select 
-        source.*,
+        source.customer_id,
+        source.first_name,
+        source.last_name,
+        source.email,
+        source.address,
+        source.state,
+        source.city,
+        source.zipcode,
+        source.accepts_marketing,
         first_orders.first_order_at,
         first_orders.first_product_id,
         first_orders.first_channel,
