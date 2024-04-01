@@ -13,5 +13,25 @@ sources:
       - name: returns
       - name: order_info
       - name: click_info
+      - name: people_pulse_account
+      - name: people_pulse_customer_nps_surveys
+      - name: people_pulse_customers
+      - name: people_pulse_employees
+      - name: people_pulse_events
+      - name: people_pulse_invoices
+      - name: people_pulse_invoice_items
+      - name: people_pulse_marketing_spend
+      - name: people_pulse_mrr
+      - name: people_pulse_plan
+      - name: people_pulse_product
+      - name: people_pulse_sales_pipeline
+      - name: people_pulse_sales_rep
+      - name: people_pulse_sessions
+      - name: people_pulse_tickets
+
+
+
+
+
       
       
