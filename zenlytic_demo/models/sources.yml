@@ -1,6 +1,15 @@
 version: 2
 
 sources:
+  - name: cybersyn
+    database: sec_filings
+
+    tables:
+      - name: sec_report_attributes
+      - name: sec_cik_index
+      - name: sec_report_text_attributes
+
+
   - name: demo_raw
     database: demo
 

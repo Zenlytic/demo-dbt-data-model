@@ -36,6 +36,8 @@ models:
     # Config indicated by + and applies to all files under models/example/
     core:
       +materialized: table
+    cybersyn:
+      +materialized: table
     people_pulse:
       +schema: people_pulse
       +materialized: table
